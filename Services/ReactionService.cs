@@ -15,7 +15,13 @@ namespace TemplarBot.Services
         public static async Task HandleReactions(DiscordClient client, MessageCreateEventArgs messageCreate) // This method is called whenever a new message is created in any channel the bot has access to.
         {
             var content = messageCreate.Message.Content.ToLower();
+            ulong tylerId = 1412113070083538944; // <-- replace with your actual Discord user ID
 
+            if (messageCreate.Message.Author.Id == tylerId)
+            {
+                var giga = DiscordEmoji.FromGuildEmote(client, 1446989032474153060); // <-- your gigachad emoji ID
+                await messageCreate.Message.CreateReactionAsync(giga);
+            }
             if (messageCreate.Message.Content.IndexOf("bread", StringComparison.OrdinalIgnoreCase) >= 0) // This checks if the message contains the word "bread" in a case-insensitive manner. If it does, we proceed to add a bread reaction to the message. If it's -1 or less, it means "bread" was not found in the message. If it is 0 or greater, it means "bread" was found at that index in the message content.
             {
                 await messageCreate.Message.CreateReactionAsync(DiscordEmoji.FromName(client, ":bread:")); // This adds a reaction to the message using the bread emoji. The CreateReactionAsync method is used to add a reaction to a message, and we specify the emoji we want to use by creating it from its name (":bread:"). This will cause the bot to react with a bread emoji whenever someone mentions "bread" in their message, no matter it's index.
