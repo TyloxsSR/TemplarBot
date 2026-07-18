@@ -17,7 +17,7 @@ using TemplarBot.Commands;
 using TemplarBot.Config;
 using TemplarBot.Events;
 using TemplarBot.Moderation;
-
+using TemplarBot.Services;
 
 
 
