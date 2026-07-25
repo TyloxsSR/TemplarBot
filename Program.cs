@@ -21,6 +21,7 @@ using TemplarBot.Services;
 
 
 
+
 namespace TemplarBot.Moderation
 {
     public class Program
@@ -69,7 +70,7 @@ namespace TemplarBot.Moderation
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };
-            
+
 
 
             Client = new DiscordClient(discordConfig);
@@ -100,12 +101,12 @@ namespace TemplarBot.Moderation
             Client.MessageCreated += MessageHandler.OnMessageCreated;
             WordFilter.LoadBadWords();
 
-            var messageService = new MessageService();
-            _ = messageService.StartTimedMessages(Client);
-            
+            QuotePosterService quotePoster = new QuotePosterService(Client, 1103149837505015830);
+            await quotePoster.StartAsync();
+
             await Client.ConnectAsync();
             await Task.Delay(-1);
-            
+
 
         }
 
